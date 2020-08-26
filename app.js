@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+
+
 // app.use((req, res, next) =>{
 //     req.ty
 //     res.status(200).json({
@@ -48,7 +50,8 @@ app.post('/api/upload',upload.single('file'),function(req, res, next) {
       res.status(500);
       //return next(err);
     }
-    res.json({ fileUrl: 'http://localhost:3000/public/images/' + req.file.filename });
+    // return with url for the uploaded file
+    res.json({ fileUrl: 'http://' + req.get('Host') + '/public/images/' + req.file.filename });
 })
 
 app.get('/public/images/:filename', function(req, res, next) {
